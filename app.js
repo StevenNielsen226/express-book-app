@@ -1,10 +1,11 @@
 const express = require("express");
 const path = require("path");
+let books = require("./book-data").books;
 const methodOverride = require("method-override");
 const Book = require("./models/Books");
 const mongoose = requrie("mongoose");
-require("dotenv").config;
-let books = require("./book-data").books;
+require("dotenv").config();
+
 const app = express();
 mongoose.connect(
   `mogodb+srv://${process.env.Mongo_DB_API_KEY}@cluster0.hcvbs.mongodb.net/`
