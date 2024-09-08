@@ -20,7 +20,6 @@ app.get("/", async function (req, res) {
   const books = await Book.find();
   res.render("books", { books });
 });
-
 app.post("/", async function (req, res) {
   await Book.create(req.body);
   res.redirect("/");
