@@ -7,8 +7,9 @@ const mongoose = requrie("mongoose");
 require("dotenv").config();
 
 const app = express();
+
 mongoose.connect(
-  `mogodb+srv://${process.env.Mongo_DB_API_KEY}@cluster0.hcvbs.mongodb.net/`
+  `mogodb+srv://${process.env.MONGO_DB_API_KEY}@cluster0.hcvbs.mongodb.net/`
 );
 //Set the view engine to pug
 app.set("views", path.join(__dirname, "views"));
