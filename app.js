@@ -6,7 +6,9 @@ const mongoose = requrie("mongoose");
 require("dotenv").config;
 let books = require("./book-data").books;
 const app = express();
-mongoose.connect(`${process.env.Mongo_DB_API_KEY}`);
+mongoose.connect(
+  `mogodb+srv://${process.env.Mongo_DB_API_KEY}@cluster0.hcvbs.mongodb.net/`
+);
 //Set the view engine to pug
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
