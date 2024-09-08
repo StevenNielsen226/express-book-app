@@ -1,15 +1,14 @@
 const express = require("express");
 const path = require("path");
-let books = require("./book-data").books;
 const methodOverride = require("method-override");
 const Book = require("./models/Books");
-const mongoose = requrie("mongoose");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
 
 mongoose.connect(
-  `mogodb+srv://${process.env.MONGO_DB_API_KEY}@cluster0.hcvbs.mongodb.net/`
+  `mongodb+srv://${process.env.MONGO_DB_API_KEY}@cluster0.hcvbs.mongodb.net/`
 );
 //Set the view engine to pug
 app.set("views", path.join(__dirname, "views"));
@@ -19,7 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Allows us to do our puts and deletes
 app.use(methodOverride("_method"));
+
 // Define routes here
+
 app.get("/", async function (req, res) {
   const books = await Book.find();
   res.render("books", { books });
