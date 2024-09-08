@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
-
 mongoose.connect(
   `mongodb+srv://${process.env.MONGO_DB_API_KEY}@cluster0.hcvbs.mongodb.net/`
 );
@@ -41,7 +40,8 @@ app.get("/new", function (req, res) {
 
 app.get("/:id", async function (req, res) {
   const isbn = req.params.id;
-  const book = await Book.find({ isbn: isbn });
+  const book = await Book.findOne({ isbn: isbn });
+  console.log(book);
   res.render("book-details", { book });
 });
 
@@ -51,10 +51,11 @@ app.put("/:id", async function (req, res) {
   res.redirect("/");
 });
 
-app.get("/edit/:id", function (req, res) {
+app.get("/edit/:id", async function (req, res) {
   const isbn = req.params.id;
-  const book = books.find((book) => book.isbn === isbn);
+  const book = await Book.findOne({ isbn: isbn });
   res.render("edit-book", { book });
 });
+
 // Start the server
 app.listen(3000, () => console.log("Server running on port 3000"));
