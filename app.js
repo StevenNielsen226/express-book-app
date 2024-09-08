@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const methodOverride = require("method-override");
-const Book = require("./models/Books");
+const Book = require("./models/Books.js");
 const mongoose = requrie("mongoose");
 require("dotenv").config;
 let books = require("./book-data").books;
